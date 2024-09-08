@@ -1,5 +1,5 @@
 module "service" {
-  source = "/home/junior/git/classes/linuxtips/aca-ecs-service-module"
+  source = "$HOME/git/classes/linuxtips/aca-ecs-service-module"
 
   region                      = var.region
   cluster_name                = var.cluster_name
