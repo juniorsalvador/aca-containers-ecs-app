@@ -6,7 +6,7 @@ set -e
 export AWS_ACCOUNT="458831286312"
 export AWS_PAGER=""
 export APP_NAME="linuxtips-app"
-export CLUSTER_NAME="linuxtips-ecs-cluster"
+export CLUSTER_NAME="aca-ecs-cluster"
 export BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
 # CI DA APP
@@ -108,6 +108,6 @@ terraform plan -var-file=environment/$BRANCH_NAME/terraform.tfvars -var containe
 echo "DEPLOY - TERRAFORM APPLY"
 terraform apply --auto-approve -var-file=environment/$BRANCH_NAME/terraform.tfvars -var container_image=$REPOSITORY_TAG
 
-# echo "DEPLOY - WAIT DEPLOY"
+echo "DEPLOY - WAIT DEPLOY"
 
-# aws ecs wait services-stable --cluster $CLUSTER_NAME --services $APP_NAME
+aws ecs wait services-stable --cluster $CLUSTER_NAME --services $APP_NAME
