@@ -6,6 +6,8 @@ set -e
 export AWS_ACCOUNT="458831286312"
 export AWS_PAGER=""
 export APP_NAME="linuxtips-app"
+export CLUSTER_NAME="aca-ecs-cluster"
+export BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
 # CI DA APP
 
@@ -91,3 +93,21 @@ docker push $AWS_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/$REPOSITORY_NAME:$GIT_C
 
 
 # APPLY DO TERRFAORM - CD
+
+cd ../terraform
+
+REPOSITORY_TAG=$AWS_ACCOUNT.dkr.ecr.us-east-1.amazonaws.com/$REPOSITORY_NAME:$GIT_COMMIT_HASH
+
+echo "DEPLOY - TERRAFORM INIT"
+terraform init -backend-config=environment/$BRANCH_NAME/backend.tfvars
+
+
+echo "DEPLOY - TERRAFORM PLAN"
+terraform plan -var-file=environment/$BRANCH_NAME/terraform.tfvars -var container_image=$REPOSITORY_TAG
+
+echo "DEPLOY - TERRAFORM APPLY"
+terraform apply --auto-approve -var-file=environment/$BRANCH_NAME/terraform.tfvars -var container_image=$REPOSITORY_TAG
+
+echo "DEPLOY - WAIT DEPLOY"
+
+aws ecs wait services-stable --cluster $CLUSTER_NAME --services $APP_NAME
