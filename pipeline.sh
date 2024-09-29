@@ -35,6 +35,9 @@ cd ../terraform
 echo "TERRAFORM - FORMAT CHECK"
 terraform fmt --recursive --check
 
+terraform init -backend-config=environment/$BRANCH_NAME/backend.tfvars
+
+
 echo "TERRAFORM - VALIDADE"
 terraform validate
 
