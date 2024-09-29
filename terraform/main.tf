@@ -1,5 +1,5 @@
 module "service" {
-  source = "/home/junior/git/classes/linuxtips/aca-ecs-service-module"
+  source = "/Users/luizjunior/git/linuxtips/aca-ecs-service-module"
 
   region                      = var.region
   cluster_name                = var.cluster_name
@@ -13,6 +13,7 @@ module "service" {
   service_launch_type         = var.service_launch_type
   service_task_count          = var.service_task_count
   service_hosts               = var.service_hosts
+  container_image             = var.container_image
 
   environment_variables = var.environment_variables
 
