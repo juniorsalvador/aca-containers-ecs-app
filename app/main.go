@@ -55,7 +55,7 @@ func main() {
 		if err != nil {
 			log.Println(err)
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"error": "Impossivel escrever no arquivo",
+				"error": "Impossivel escrever nesse arquivo",
 			})
 		}
 
