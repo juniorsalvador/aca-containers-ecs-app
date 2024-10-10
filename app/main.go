@@ -13,7 +13,7 @@ func main() {
 	app := fiber.New()
 
 	app.Get("/version", func(c *fiber.Ctx) error {
-		return c.SendString("v4")
+		return c.SendString("v7")
 	})
 
 	app.Get("/healthcheck", func(c *fiber.Ctx) error {
@@ -55,7 +55,7 @@ func main() {
 		if err != nil {
 			log.Println(err)
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-				"error": "Impossivel escrever no arquivo",
+				"error": "Impossivel escrever nesse arquivo",
 			})
 		}
 
