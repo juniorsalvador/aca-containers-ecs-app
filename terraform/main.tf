@@ -1,6 +1,6 @@
 module "service" {
-  source = "/Users/luizjunior/git/linuxtips/aca-ecs-service-module"
-  #source = "github.com/juniorsalvador/aca-ecs-service-module?ref=v1.1.0"
+  #source = "/Users/luizjunior/git/linuxtips/aca-ecs-service-module"
+  source = "github.com/juniorsalvador/aca-ecs-service-module?ref=v1.2.0"
 
   region                      = var.region
   cluster_name                = var.cluster_name
