@@ -1,6 +1,6 @@
 module "service" {
   #source = "/Users/luizjunior/git/linuxtips/aca-ecs-service-module"
-  source = "github.com/juniorsalvador/aca-ecs-service-module?ref=v1.2.0"
+  source = "github.com/juniorsalvador/aca-ecs-service-module?ref=v1.3.0"
 
   region                      = var.region
   cluster_name                = var.cluster_name
@@ -78,4 +78,6 @@ module "service" {
 
   alb_arn                 = data.aws_ssm_parameter.alb.value
   scale_tracking_requests = var.scale_tracking_requests
+
+  service_discovery_namespace = data.aws_ssm_parameter.service_discovery_namespace.value
 }
